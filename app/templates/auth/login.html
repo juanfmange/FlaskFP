@@ -1,0 +1,36 @@
+{% extends './base.html' %}
+
+{% block title %}Inicio de sesion {% endblock %}
+
+{% block customCSS %}
+<link rel="stylesheet" href="{{ url_for('static',filename='css/login.css')}}"
+{% endblock %}
+
+{% block body %}
+<form class="form-signin text-center" action="/login" method="POST">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <img class="mb-4" src="{{url_for('static', filename='img/flask.svg')}}" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 font-weight-normal">Inicio de sesi&oacute;n</h1>
+    <label for="usuario" class="sr-only">Usuario</label>
+    <input type="text" id="usuario" name="usuario" class="form-control" placeholder="usuario" required minlength="5" maxlength="10" autofocus>
+    <br/>
+    <label for="password" 
+    class="sr-only">Password</label>
+    <input type="password" id="password" name="password" class="form-control" placeholder="Password" minlength="5" required>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
+    <p class="mt-5 mb-3 text-muted">&copy; 2022</p>
+</form>
+<!-- Placeholder: Indica lo que se tiene que ingresar en el imput -->
+<!-- required: es un input requerido -->
+<!-- autofocus: el cursor se posiciona de forma predeterminada cuando se cargue la pagina -->
+<!-- minlenght: indica la cantidad de caracteres minima -->
+<!-- maxlenght: indica la cantidad de caracteres maxima -->
+
+
+
+
+{% block customJS%}
+<script src="{{ url_for('static',filename='js/login.js')}}"></script>
+{% endblock %}
+
+{% endblock %}
