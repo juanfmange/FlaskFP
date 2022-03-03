@@ -12,12 +12,42 @@
     <img class="mb-4" src="{{url_for('static', filename='img/flask.svg')}}" alt="" width="72" height="72">
     <h1 class="h3 mb-3 font-weight-normal">Inicio de sesi&oacute;n</h1>
     <label for="usuario" class="sr-only">Usuario</label>
-    <input type="text" id="usuario" name="usuario" class="form-control" placeholder="usuario" required minlength="5" maxlength="10" autofocus>
+    <input type="text" id="usuario" name="usuario" class="form-control" placeholder="Usuario" required minlength="3" maxlength="20" autofocus>
     <br/>
     <label for="password" 
     class="sr-only">Password</label>
     <input type="password" id="password" name="password" class="form-control" placeholder="Password" minlength="5" required>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
+
+    {% with messages = get_flashed_messages(with_categories=True) %}
+
+    {% if messages %}
+    <br/>
+    {% for category, message in messages %}
+    
+    {% if category == 'warning' %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>{{ message }}</strong> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    {% else %}
+
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>{{ message }}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    {% endif %}
+
+    {% endfor %}
+    {% endif %}
+
+    {% endwith %}
     <p class="mt-5 mb-3 text-muted">&copy; 2022</p>
 </form>
 <!-- Placeholder: Indica lo que se tiene que ingresar en el imput -->
